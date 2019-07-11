@@ -1,2 +1,2 @@
 # Assignment
-Final assignment PESIO summer course
+Final assignment of PESIO summer course
