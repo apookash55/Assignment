@@ -15,18 +15,21 @@ for k in range(len(links)):
         sauce = urllib.request.urlopen('https://karki23.github.io/Weather-Data/' + links[k]).read()
         srccode = BeautifulSoup(sauce,'lxml')
         table = srccode.table
+        table_data=[]
         for i in table.find_all('tr')[0:1]:
             line = []
             for j in i.find_all('th'):
                 line.append(j.string)
             line = ','.join(line)
-            f.write(line + '\n')
+            table_data.append(line)
         for i in table.find_all('tr')[1:]:
             line = []
             for j in i.find_all('td'):
                 line.append(j.string)
             line = ','.join(line)
-            f.write(line + '\n')
+            table_data.append(line)
+        table_data = '\n'.join(table_data)
+        f.write(table_data)
         f.flush()
         print(city_names[k] + '.csv','file written')
         f.close()
